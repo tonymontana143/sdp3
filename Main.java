@@ -1,31 +1,5 @@
 package sdp3;
 
-// Target interface
-interface MessageSender {
-    void sendMessage(String message);
-}
-
-// Adaptee interface (the existing system)
-class LegacyMessageSender {
-    void send(String text) {
-        System.out.println("Legacy system sends: " + text);
-    }
-}
-
-// Adapter class
-class LegacyMessageAdapter implements MessageSender {
-    private LegacyMessageSender legacySender;
-
-    public LegacyMessageAdapter(LegacyMessageSender legacySender) {
-        this.legacySender = legacySender;
-    }
-
-    @Override
-    public void sendMessage(String message) {
-        legacySender.send(message);
-    }
-}
-
 // Client code
 public class Main {
     public static void main(String[] args) {
@@ -39,3 +13,30 @@ public class Main {
         adapter.sendMessage("Hello, Legacy System!");
     }
 }
+
+// target interface
+interface MessageSender {
+    void sendMessage(String message);
+}
+
+// adaptee interface
+class LegacyMessageSender {
+    void send(String text) {
+        System.out.println("Legacy system sends: " + text);
+    }
+}
+
+// adapter class
+class LegacyMessageAdapter implements MessageSender {
+    private LegacyMessageSender legacySender;
+
+    public LegacyMessageAdapter(LegacyMessageSender legacySender) {
+        this.legacySender = legacySender;
+    }
+
+    @Override
+    public void sendMessage(String message) {
+        legacySender.send(message);
+    }
+}
+
